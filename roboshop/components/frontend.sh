@@ -6,7 +6,7 @@
 ID=$(id -u) # u gives particular userid
 
 COMPONENT=frontend
-LOG_FILE = "/tmp/$COMPONENT.log"
+LOG_FILE="/tmp/$COMPONENT.log"
 
 # functions
 check_status() {
