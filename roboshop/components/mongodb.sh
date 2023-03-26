@@ -47,7 +47,7 @@ sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 check_status $?
 
 echo -n "Starting $COMPONENT:"
-systemctl daemonreload &>> $LOG_FILE
+systemctl daemon-reload &>> $LOG_FILE
 systemctl restart mongod &>> $LOG_FILE
 check_status $?
 
@@ -57,7 +57,7 @@ check_status $?
 
 echo -n "Extracting $COMPONENT schema:"
 cd /tmp
-unzip $COMPONENT.zip &>> $LOG_FILE
+unzip -o $COMPONENT.zip &>> $LOG_FILE # o determunes override the folder if it already exsits
 check_status $?
 
 echo -n "Injecting $COMPONENT schema:"
@@ -65,5 +65,3 @@ cd $COMPONENT-main
 mongo < catalogue.js &>> $LOG_FILE
 mongo < users.js &>> $LOG_FILE
 check_status $?
-
-
