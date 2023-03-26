@@ -60,7 +60,7 @@ npm install &>> $LOG_FILE
 check_status $?
 
 echo -n "upadting the sxstemd file with DB details:"
-sed -i -e 's/MONGO_DNSNAME/172.31.91.124' /home/$APPSUER/$COMPONENT/systemd.service
+sed -i -e 's/MONGO_DNSNAME/172.31.91.124/' /home/$APPSUER/$COMPONENT/systemd.service
 mv /home/roboshop/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
 check_status $?
 
