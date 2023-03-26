@@ -10,12 +10,12 @@ COMPONENT=rabbitmqq
 source components/common.sh # source loads the file
 
 echo -n "Installing and configuring dependency:"
-curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash 
+curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash &>> $LOGFILE 
+curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash  &>> $LOGFILE 
 check_status $?
 
 echo -n "Installing server:"
-yum install rabbitmq-server -y &>>LOG_FILE
+yum install rabbitmq-server -y &>> $LOG_FILE
 check_status $?
 
 echo -n "Starting $COMPONENT :"
