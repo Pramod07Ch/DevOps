@@ -54,9 +54,26 @@ mv /home/$APPSUER/$COMPONENT-main /home/$APPSUER/$COMPONENT
 chown -R $APPSUER /home/$APPSUER/$COMPONENT
 check_status $?
 
-npm install
+echo -n "Installing the application"
+cd /home/$APPSUER/$COMPONENT
+npm install &>> $LOG_FILE
+check_status $?
+
+echo -n "upadting the sxstemd file with DB details:"
+sed -i -e 's/MONGO_DNSNAME/172.31.91.124' /home/$APPSUER/$COMPONENT/systemd.service
+mv /home/roboshop/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
+check_status $?
+
+echo -n "restarting $COMPONENT:"
+systemctl daemonreload &>> $LOG_FILE
+systemctl enable $COMPONENT &>> $LOG_FILE
+systemctl start $COMPONENT &>> $LOG_FILE
+check_status $?
 
 
+# systemctl start catalogue
+# systemctl enable catalogue
+# systemctl status catalogue -l
 
 
 
