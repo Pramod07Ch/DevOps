@@ -4,9 +4,9 @@ set -e
 
 COMPONENT=$1
 # validating existing user is a root user or not
-id=$(id -u)
+id=$(id -u) # u gives particular userid
 
-if ["$ID" -ne 0]; then
+if [ "$ID" -ne 0 ] ; then 
     echo -e "\e[31m You should execute the script as a root user or sudo as a prefix \e[0m"
     exit 1  
 fi
