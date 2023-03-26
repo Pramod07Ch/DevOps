@@ -36,8 +36,8 @@ yum install -y mongodb-org &>> $LOG_FILE
 check_status $?
 
 echo -n "Starting $COMPONENT:"
-systemctl enable mongodb &>> $LOG_FILE
-systemctl start mongodb  &>> $LOG_FILE
+systemctl enable mongod &>> $LOG_FILE
+systemctl start mongod  &>> $LOG_FILE
 
 check_status $?
 # Update Listen IP address from 127.0.0.1 to 0.0.0.0 in the config file, 
@@ -48,11 +48,11 @@ check_status $?
 
 echo -n "Starting $COMPONENT:"
 systemctl daemonreload &>> $LOG_FILE
-systemctl restart mongodb &>> $LOG_FILE
+systemctl restart mongod &>> $LOG_FILE
 check_status $?
 
 echo -n "Downloading $COMPONENT schema:"
-curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
+curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
 check_status $?
 
 echo -n "Extracting $COMPONENT schema:"
