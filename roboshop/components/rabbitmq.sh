@@ -5,7 +5,7 @@
 # validating existing user is a root user or not
 ID=$(id -u) # u gives particular userid
 
-COMPONENT=rabbitmqq
+COMPONENT=rabbitmq
 
 source components/common.sh # source loads the file
 
