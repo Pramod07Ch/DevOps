@@ -41,7 +41,7 @@ mv static/* .
 rm -rf frontend-main README.md 
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 
-f [ $? -eq 0 ] ; then
+if [ $? -eq 0 ] ; then
     echo -e "\e[32m Success \e[0m"
 else
     echo -e "\e[31m Failure \e[0m"
@@ -52,7 +52,7 @@ echo -n "Starting the service:"
 systemctl enable nginx &>> /tmp/frontend.log
 systemctl start nginx &>> /tmp/frontend.log
 
-f [ $? -eq 0 ] ; then
+if [ $? -eq 0 ] ; then
     echo -e "\e[32m Success \e[0m"
 else
     echo -e "\e[31m Failure \e[0m"
