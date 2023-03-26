@@ -3,7 +3,7 @@
 set -e
 
 # validating existing user is a root user or not
-id=$(id -u) # u gives particular userid
+ID=$(id -u) # u gives particular userid
 
 if [ "$ID" -ne 0 ] ; then 
     echo -e "\e[31m You should execute the script as a root user or sudo as a prefix \e[0m"
@@ -13,7 +13,7 @@ fi
 echo -n "Installing nginx:"
 yum install nginx -y &>> /tmp/frontend.log
 
-if [$? -eq 0]; then
+if [ $? -eq 0 ] ; then
     echo -e "\e[32m Success \e[0m"
 else
     echo -e "\e[31m Failure \e[0m"
