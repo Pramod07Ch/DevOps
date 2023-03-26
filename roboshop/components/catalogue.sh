@@ -51,7 +51,7 @@ check_status $?
 echo -n "config the permisssions"
 rm -rf /home/$APPSUER/$COMPONENT &>> $LOG_FILE
 mv /home/$APPSUER/$COMPONENT-main /home/$APPSUER/$COMPONENT
-chwon -R $APPSUER /home/$APPSUER/$COMPONENT
+chown -R $APPSUER /home/$APPSUER/$COMPONENT
 check_status $?
 
 npm install
