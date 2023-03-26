@@ -14,10 +14,10 @@ curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/stan
 check_status $?
 
 echo -n "Installing the $COMPONENT :"
-yum install mysql-community-server -y  &>> $LOGFILE  
+yum install mysql-community-server -y  &>> $LOG_FILE  
 check_status $? 
 
 echo -n "Starting $COMPONENT :" 
-systemctl enable mysqld  &>> $LOGFILE  
-systemctl start mysqld   &>> $LOGFILE  
+systemctl enable mysqld  &>> $LOG_FILE  
+systemctl start mysqld   &>> $LOG_FILE  
 check_status $?
