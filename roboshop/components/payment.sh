@@ -1,3 +1,6 @@
-#! /bin/bash
+COMPONENT=payment
 
-echo "I am payment"
+source components/common.sh # source loads the file
+
+PYTHON
+

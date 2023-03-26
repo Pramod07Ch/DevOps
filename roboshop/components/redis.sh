@@ -28,7 +28,7 @@ curl -L https://raw.githubusercontent.com/stans-robot-project/redis/main/redis.r
 check_status $?
 
 echo -n "Installing $COMPONENT server :"
-yum install redis-6.2.11 -y  &>> $LOGFILE
+yum install redis-6.2.11 -y  &>> $LOG_FILE
 check_status $? 
 
 echo -n "Updating $COMPONENT visibility:"

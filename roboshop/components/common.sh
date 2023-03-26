@@ -44,7 +44,7 @@ DOWNLOAD_EXTRACT() {
 
 CONFIG_SERVICE() {
     echo -n "upadting the sxstemd file with DB details:"
-    sed -i -e 's/MONGO_DNSNAME/172.31.91.124/' -e 's/REDIS_ENDPOINT/172.31.94.225/' -e 's/MONGO_ENDPOINT/172.31.91.124/' /home/$APPSUER/$COMPONENT/systemd.service
+    sed -i -e 's/DBHOST/172.31.60.187/' -e 's/CARTENDPOINT /172.31.86.210/' -e 's/MONGO_DNSNAME/172.31.91.124/' -e 's/REDIS_ENDPOINT/172.31.94.225/' -e 's/MONGO_ENDPOINT/172.31.91.124/' /home/$APPSUER/$COMPONENT/systemd.service
     mv /home/roboshop/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
     check_status $?
 
@@ -62,6 +62,61 @@ NPM_INSTALL() {
     cd /home/$APPSUER/$COMPONENT
     npm install &>> $LOG_FILE
     check_status $?
+}
+
+MVN_PACKAGE() {
+    echo -n "Creating the $COMPONENT Package :"
+    cd /home/$APPUSER/$COMPONENT/ 
+    mvn clean package  &>> $LOG_FILE
+    mv target/shipping-1.0.jar shipping.jar
+    check_status $?   
+}
+
+
+
+JAVA() {
+    echo -n "Installing Maven"
+    npm install maven -y &>> $LOG_FILE
+    check_status $?
+
+    # calling function user
+    CREATE_USER
+
+    # download and extract
+    DOWNLOAD_EXTRACT
+
+    # run maven package
+    MVN_PACKAGE
+
+    # config the service
+    CONFIG_SERVICE
+}
+
+PYTHON() {
+
+    echo -n "Installing Python and dependencies :"
+    yum install python36 gcc python3-devel -y  &>> $LOG_FILE
+    check_status $?
+
+    # Calling Create-User Functon 
+    CREATE_USER
+
+    # Calling Download_And_Extract Function
+    DOWNLOAD_EXTRACT
+
+    echo -n "Installing $COMPONENT :"
+    cd /home/roboshop/$COMPONENT/ 
+    pip3 install -r requirements.txt   &>> $LOG_FILE 
+    check_status $? 
+
+    USERID=$(id -u roboshop)
+    GROUPID=$(id -g roboshop)
+    
+    echo -n "Updating the $COMPONENT.ini file :"
+    sed -i -e "/^uid/ c uid=${USERID}" -e "/^gid/ c gid=${GROUPID}"  /home/$APPUSER/$COMPONENT/$COMPONENT.ini 
+
+    # Calling Config-Svc Function
+    CONFIG_SVC 
 }
 
 
