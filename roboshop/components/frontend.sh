@@ -24,7 +24,7 @@ fi
 echo -n "Downloading frontend:"
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
 
-if [$? -eq 0] ; then
+if [ $? -eq 0 ] ; then
     echo -e "\e[32m Success \e[0m"
 else
     echo -e "\e[31m Failure \e[0m"
@@ -41,7 +41,7 @@ mv static/* .
 rm -rf frontend-main README.md 
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 
-f [$? -eq 0] ; then
+f [ $? -eq 0 ] ; then
     echo -e "\e[32m Success \e[0m"
 else
     echo -e "\e[31m Failure \e[0m"
