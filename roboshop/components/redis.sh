@@ -34,6 +34,7 @@ sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis/redis.conf
 check_status $?
 
 echo -n "Starting $COMPONENT:"
-systemctl daemonreload &>> $LOG_FILE
-systemctl restart mongod &>> $LOG_FILE
+systemctl daemon-reload &>> $LOG_FILE
+systemctl enable $COMPONENT &>> $LOG_FILE
+systemctl restart $COMPONENT &>> $LOG_FILE
 check_status $?
