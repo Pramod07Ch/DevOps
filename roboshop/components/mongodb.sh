@@ -43,7 +43,7 @@ check_status $?
 # Update Listen IP address from 127.0.0.1 to 0.0.0.0 in the config file, 
 # so that MongoDB can be accessed by other services.
 echo -n "Updating $COMPONENT visibility:"
-sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongodb.conf
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 check_status $?
 
 echo -n "Starting $COMPONENT:"
