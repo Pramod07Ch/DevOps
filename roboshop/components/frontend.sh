@@ -7,7 +7,7 @@ COMPONENT=$1
 id=$(id -u)
 
 if ["$ID" -ne 0]; then
-    echo -e "\e[31m You should execute the script as a root user or sudo as a prefix \e[0m]"
+    echo -e "\e[31m You should execute the script as a root user or sudo as a prefix \e[0m"
     exit 1  
 fi
 
