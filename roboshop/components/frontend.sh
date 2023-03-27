@@ -25,12 +25,10 @@ fi
 
 echo -n "Installing nginx:"
 yum install nginx -y &>> $LOG_FILE
-
 check_status $?
 
 echo -n "Downloading $COMPONENT:"
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
-
 check_status $?
 
 echo -n "Performaing cleanup of old $COMPONENT content:"
@@ -42,11 +40,14 @@ mv frontend-main/* .
 mv static/* .
 rm -rf $COMPONENT-main README.md 
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
-
 check_status $?
+
+for component in catalogue cart user shipping payment; do 
+    echo -n "Updating the proxy details in the reverse proxy file :"
+    sed -i "/$component/s/localhost/$component.roboshop.internal/" /etc/nginx/default.d/roboshop.conf
+done 
 
 echo -n "Starting the service:"
 systemctl enable nginx &>> $LOG_FILE
 systemctl start nginx &>> $LOG_FILE
-
 check_status $?
