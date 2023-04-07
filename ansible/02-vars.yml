@@ -10,7 +10,7 @@
 
     - name: print URL from  task
       ansible.builtin.debug:
-        msg: The defined url is {{URL}}
+        msg: The defined second url is {{URL}}
       vars:
         URL: fb-com    # task/locla variable: scope of it is inside task only
 
