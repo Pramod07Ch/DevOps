@@ -8,7 +8,7 @@
 
     - name: printing the shell registered output variable
       ansible.builtin.debug:
-        msg: its {{OUT}}
+        msg: its {{OUT.stdout}}
   
         # shell module by default doesnot show the output, it should be registered 
         #
