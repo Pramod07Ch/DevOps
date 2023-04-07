@@ -1,8 +1,17 @@
 - name: Demo on using variables
   hosts: all
   vars:
-    URL: play.google.com
+    URL: play.google.com    # it is aglobal varibale declaration
   tasks:
     - name: printing the URL task
       ansible.builtin.debug:
-          msg: Th defined url is {{URL}}
+        msg: The defined url is {{URL}}
+
+
+    - name: print URL from  task
+      ansible.builtin.debug:
+        msg: The defined url is {{URL}}
+      vars:
+        URL: fb-com    # task/locla variable: scope of it is inside task only
+
+         
