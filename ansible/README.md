@@ -32,4 +32,5 @@ There 1000's of modules available : -m shell.  -m yum , -m service
 ```
 
 1) Manual Approach      : using ansible command  : With this you can execute one command at time.
-2) Automated Approach   : using ansible playbook : With this we can mention all the set of tasks that needs to be executed, things will happen in the declared approach 
+2) Automated Approach   : using ansible playbook : With this we can mention all the set of tasks that needs to be executed, things will happen in the declared approach.
+ 
