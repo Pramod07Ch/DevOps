@@ -13,4 +13,14 @@
       vars:
         URL: fb.com    # task/locla variable: scope of it is inside task only
 
+    - name: printing the URL alone
+      ansible.builtin.debug:
+        msg: "{{URL}}"
+      vars:
+        URL: google.com    # task/locla variable: scope of it is inside task only
+
+    - name: suply variable from command line
+      ansible.builtin.debug:
+        msg: "{{CMD_URL}}"
          
+# local variables > global variables
