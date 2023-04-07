@@ -2,6 +2,12 @@
   hosts: all
   vars:
     URL: play.google.com    # it is a global varibale declaration
+  vars_files: demo_vars.yml
+  vars_prompt:
+    - name: PURL
+      prompt: ENter the purl
+      private: false
+
   tasks:
     - name: printing the URL task
       ansible.builtin.debug:
@@ -22,5 +28,14 @@
     - name: suply variable from command line
       ansible.builtin.debug:
         msg: "{{CMD_URL}}"
+
+    - name: Printing the variables from a file 
+      ansible.builtin.debug:
+        msg: "{{var_from_file}}"
+
+    - name: Printing prompt url  
+      ansible.builtin.debug:
+        msg: "{{PURL}}"
          
-# local variables > global variables
+# command line variables > local variables > global variables > file 
+
