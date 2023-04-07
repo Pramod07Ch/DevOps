@@ -1,0 +1,7 @@
+# Shell module: when to execute or do something with appropriat module using shell module
+- name: deomo on using the shell command
+  hosts: all
+  tasks:
+    - name: uptime command
+      ansible.builtin.shell: uptime
+      register: OUT
