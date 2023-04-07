@@ -1,14 +1,13 @@
 - name: Demo on using variables
   hosts: all
   vars:
-    URL: play.google.com    # it is aglobal varibale declaration
+    URL: play.google.com    # it is a global varibale declaration
   tasks:
     - name: printing the URL task
       ansible.builtin.debug:
         msg: The defined url is {{URL}}
 
-
-    - name: print URL from  task
+    - name: print URL from  second task
       ansible.builtin.debug:
         msg: The defined second url is {{URL}}
       vars:
