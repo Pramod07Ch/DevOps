@@ -5,3 +5,10 @@
     - name: uptime command
       ansible.builtin.shell: uptime
       register: OUT
+
+    - name: printing the shell registered output variable
+      ansible.builtin.debug:
+        msg: its {{OUT}}
+  
+        # shell module by default doesnot show the output, it should be registered 
+        #
