@@ -1,0 +1,31 @@
+- name: Demo on conditions 
+  hosts: all  
+  vars:
+    action: false 
+  tasks: 
+    - name: Execute this task when Distribution is CentOS 
+      ansible.builtin.debug:
+        msg: Welcome to CentOS 
+      when: ansible_distribution == "CentOS" 
+
+    - name: Execute this task when Distribution is Ubuntu 
+      ansible.builtin.debug:
+        msg: Welcome to Ubuntu 
+      when: ansible_distribution == "Ubuntu" 
+
+    - name: Run an action 
+      ansible.builtin.debug:
+        msg: Action Is True 
+      when: action 
+
+    - name: Run this task when the variable is declared 
+      ansible.builtin.debug:
+        msg: Variable Action Is Declared
+      when: actions123 is defined # actions123 is not declared 
+
+
+# Older versions of ansible uses undefined, latest version os ansible users not defined 
+#
+# defined , not defined, tue, false , succeded , failure all of them are predefined keyboards as per the documentation 
+
+# Ref : https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_conditionals.html
