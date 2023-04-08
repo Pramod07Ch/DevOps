@@ -5,7 +5,7 @@
   tasks:
     - name: using loop in playbook
       anisble.builtin.dedug:
-        msg: value is "{{item}}"
+        msg: "value is {{item}}"
       loop:
         - 10
         - 20
