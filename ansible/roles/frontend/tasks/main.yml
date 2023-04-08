@@ -1,3 +1,5 @@
-- name: print a message
-  ansible.builtin.debug:
-    msg: I am here to check functionality
+- name: Installing nginx
+  ansible.builtin.package:
+    name: nginx
+    state: present
+
