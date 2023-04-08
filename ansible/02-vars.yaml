@@ -2,7 +2,7 @@
   hosts: all
   vars:
     URL: play.google.com    # it is a global varibale declaration
-  vars_files: demo_vars.yml
+  vars_files: demo_vars.yaml
   vars_prompt:
     - name: PURL
       prompt: ENter the purl

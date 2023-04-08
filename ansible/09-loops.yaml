@@ -1,0 +1,13 @@
+# each variable/ value in the list is refeerd as item
+
+- name: Demo on loops
+  hosts: all
+  tasks:
+    - name: using loop in playbook
+      anisble.builtin.dedug:
+        msg: value is "{{item}}"
+      loop:
+        - 10
+        - 20
+        - 30
+          

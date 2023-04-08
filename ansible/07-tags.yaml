@@ -1,0 +1,30 @@
+# we can isolate the tasks based on tags mentioned in playbook
+# menion: eg. -t user
+
+- name : Demo for tags
+  hosts: all
+  tasks:
+    - name: This is frontend task
+      ansible.builtin.debug:
+        msg: Installing frontend
+      tags: frontend
+
+    - name: This is Mongodb task
+      ansible.builtin.debug:
+        msg: Installing Mongodb
+      tags: mongodb
+
+    - name: This is user task
+      ansible.builtin.debug:
+        msg: Installing user
+      tags: user
+
+    - name: This is cart task
+      ansible.builtin.debug:
+        msg: Installing cart
+      tags: cart
+
+    - name: This is DB task
+      ansible.builtin.debug:
+        msg: Installing DB
+      tags: db
