@@ -4,6 +4,7 @@
 
 - name: demo on package installation
   hosts: all
+  become: yes
   tasks: 
     - name: Installing nginx 
       ansible.builtin.package:
