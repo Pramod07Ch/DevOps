@@ -1,8 +1,11 @@
 # in package module, state has present, absent, latest.
-# present: wether to install; absent: remove a package
+# present: to install; absent: remove a package
 # latest: update only if available
 
 - name: demo on package installation
   hosts: all
-  ansible.builtin.package:
-    name: 
+  tasks:
+    - name: installing nginx
+      ansible.builtin.package:
+        name: nginx
+        state: present
