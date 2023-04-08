@@ -22,12 +22,12 @@
 
 - name: copy roboshop proxy config
   ansible.builtin.copy:
-    src: /roboshop.conf
+    src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
     remote_src: no # it ensure your code search is on remote machine
 
 - name: Restart ngnix
   ansible.builtin.service:
     name: nginx
-    state: restarted
-    enabled: yes
+    state: restarted # restart the service
+    enabled: yes  # enable the service
