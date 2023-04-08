@@ -24,10 +24,9 @@
   ansible.builtin.copy:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
-    remote_src: no # it ensure your code search is on remote machine
 
-- name: Restart ngnix
+- name: Restart nginx
   ansible.builtin.service:
     name: nginx
-    state: restarted # restart the service
-    enabled: yes  # enable the service
+    state: restarted                       # restart the service
+    enabled: yes                     # enable the service
