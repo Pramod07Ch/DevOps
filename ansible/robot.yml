@@ -1,5 +1,5 @@
 - name: playbook to set up the roboshop 
   become: yes
-  hosts: frontend
+  hosts: "{{COMPONENT}}"
   roles:
-    - frontend
+    - "{{COMPONENT}}"
