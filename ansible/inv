@@ -16,5 +16,14 @@ user.roboshop.internal
 [cart]
 cart.roboshop.internal
 
+[mysql]
+mysql.roboshop.internal
+
 [shipping]
 shipping.roboshop.internal
+
+[rabbitmq]
+rabbitmq.roboshop.internal
+
+[payment]
+paymnet.roboshop.internal
