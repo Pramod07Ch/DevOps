@@ -8,9 +8,9 @@
     name: mongodb-org 
     state: present 
 
-- name: Updating the Mongodv visibility
+- name: Updating the Mongodb visibility
   ansible.builtin.replace:
-    path: /etc/mongodb.repo
+    path: /etc/mongodb.conf
     regexp: '127.0.0.1'
     replace: '0.0.0.0'
   
@@ -33,4 +33,4 @@
   loop:
     - users
     - catalogue
-    
+
