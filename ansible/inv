@@ -1,8 +1,2 @@
 [frontend]
-172.31.5.19
-
-[user]
-
-[mongodb]
-
-[redis]
+frontend.roboshop.internal
