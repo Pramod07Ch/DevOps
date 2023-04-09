@@ -1,0 +1,27 @@
+- name: Installing maven 
+  ansible.builtin.package:
+    name: maven 
+    state: present 
+
+# call create user role
+- name: calling create user role from common role 
+  ansible.builtin.include_role: 
+    name: common
+    tasks:from: create_user
+
+# call download and extract role
+- name: calling download and extract from common role 
+  ansible.builtin.include_role: 
+    name: common
+    tasks:from: download_cleanup
+
+- name: Generating artifacts 
+  ansible.builtin.shell: maven clean package && mv target/{{COMPONENT}}-1.0.jar {{COMPONENT}}.jar
+  args:
+    chdir: /home/{{APPUSER}}/{{COMPONENT}}/
+
+# call config service file
+- name: calling config service role from common role 
+  ansible.builtin.include_role: 
+    name: common
+    tasks:from: config-service

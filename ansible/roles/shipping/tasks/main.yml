@@ -1,0 +1,4 @@
+- name: calling maven task role from common role 
+  ansible.builtin.include_role: 
+    name: common
+    tasks:from: maven
