@@ -1,33 +1,66 @@
-- name: Installing nginx
+- name: Installing nginx 
   ansible.builtin.package:
-    name: nginx
-    state: present
+    name: nginx 
+    state: present 
 
-- name: Download and extract frontend
+- name: Download and extract frontend 
   ansible.builtin.unarchive:
     src: https://github.com/stans-robot-project/frontend/archive/main.zip
-    dest: /tmp
+    dest: /tmp 
     remote_src: yes
-
-- name: Perform frontend cleanup
+ 
+- name: Performing frontend cleanup 
   ansible.builtin.file:
     path: /usr/share/nginx/html
-    state: absent
+    state: absent 
 
-- name: copy frontend files
+- name: Copying frontend code
   ansible.builtin.copy:
     src: /tmp/frontend-main/static/
     dest: /usr/share/nginx/html
-    remote_src: yes # it ensure your code search is on remote machine
+    remote_src: yes                    # This ensure your source to copy is on the remote machine  
 
-
-- name: copy roboshop proxy config
-  ansible.builtin.copy:
+- name: Copying Roboshop Proxy Config 
+  ansible.builtin.template:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
-
-- name: Restart Nginx 
+  
+- name: restart nginx
   ansible.builtin.service:
     name: nginx
     state: restarted         
     enabled: yes
+
+# - name: Installing nginx
+#   ansible.builtin.package:
+#     name: nginx
+#     state: present
+
+# - name: Download and extract frontend
+#   ansible.builtin.unarchive:
+#     src: https://github.com/stans-robot-project/frontend/archive/main.zip
+#     dest: /tmp
+#     remote_src: yes
+
+# - name: Perform frontend cleanup
+#   ansible.builtin.file:
+#     path: /usr/share/nginx/html
+#     state: absent
+
+# - name: copy frontend files
+#   ansible.builtin.copy:
+#     src: /tmp/frontend-main/static/
+#     dest: /usr/share/nginx/html
+#     remote_src: yes # it ensure your code search is on remote machine
+
+
+# - name: copy roboshop proxy config
+#   ansible.builtin.copy:
+#     src: roboshop.conf
+#     dest: /etc/nginx/default.d/roboshop.conf
+
+# - name: Restart Nginx 
+#   ansible.builtin.service:
+#     name: nginx
+#     state: restarted         
+#     enabled: yes
