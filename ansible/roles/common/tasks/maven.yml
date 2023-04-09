@@ -15,10 +15,11 @@
     name: common
     tasks_from: download_cleanup
 
-- name: Generating artifacts 
-  ansible.builtin.shell: maven clean package && mv target/{{COMPONENT}}-1.0.jar {{COMPONENT}}.jar
+- name: Generating Artifacts
+  ansible.builtin.shell: mvn clean package  &&  mv target/{{COMPONENT}}-1.0.jar {{COMPONENT}}.jar
   args:
     chdir: /home/{{APPUSER}}/{{COMPONENT}}/
+
 
 # call config service file
 - name: calling config service role from common role 
