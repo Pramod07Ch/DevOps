@@ -10,13 +10,13 @@
 - name: calling create user role from common role 
   ansible.builtin.include_role: 
     name: common
-    tasks:from: create_user
+    tasks_from: create_user
 
 # call download and extract role
 - name: calling download and extract from common role 
   ansible.builtin.include_role: 
     name: common
-    tasks:from: download_cleanup
+    tasks_from: download_cleanup
 
 # call to perform npm install
 - name: generating node-npm modules install
@@ -27,4 +27,4 @@
 - name: calling config service role from common role 
   ansible.builtin.include_role: 
     name: common
-    tasks:from: config-service
+    tasks_from: config-service
