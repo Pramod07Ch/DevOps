@@ -14,7 +14,7 @@
     state: started         
     enabled: yes
 
-- name: checl the default password
+- name: check the default password
   block: 
     - name: Get MySQL version with non-default credentials
       community.mysql.mysql_info:
