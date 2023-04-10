@@ -1,18 +1,20 @@
-- name: copying mysql repo
+- name: Copying Mysql Repo  
   ansible.builtin.copy:
-    src: mysql.repo
-    dest: /etc/yum.repos.d/mysql.repo
+    src: mysql.repo 
+    dest: /etc/yum.repos.d/mysql.repo 
 
-- name: Installing mysql 
-  ansible.builtin.package:
-    name: mysql-community-server 
-    state: present 
+- name: Installing MySQL 
+  ansible.builtin.yum:
+    name: 
+      - mysql-community-server
+      - MySQL-python
+    state: installed  
 
-- name: starting mysql
+- name: Starting MySQL
   ansible.builtin.service:
-    name: mysqld 
-    state: started         
-    enabled: yes
+    name: mysqld
+    state: started          
+    enabled: yes 
 
 - name: Check the default password 
   block: 
