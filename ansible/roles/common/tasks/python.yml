@@ -29,7 +29,7 @@
     regexp: '^gid'
     line: uid = {{APPUSERINFO.group}}
 
-- name: Install Application Dependencies 
+- name: Install of Application Dependencies 
   ansible.builtin.pip:
     requirements: /home/{{APPUSER}}/{{COMPONENT}}/requirements.txt
     executable: pip3
