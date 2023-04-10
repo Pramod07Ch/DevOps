@@ -2,3 +2,4 @@
   ansible.builtin.user:
     name: "{{APPUSER}}"
     comment: roboshop user account
+  register: APPUSERINFO
