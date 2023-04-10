@@ -1,0 +1,61 @@
+- name: copying mysql repo
+  ansible.builtin.copy:
+    src: mysql.repo
+    dest: /etc/yum.repos.d/mysql.repo
+
+- name: Installing mysql 
+  ansible.builtin.package:
+    name: mysql-community-server 
+    state: present 
+
+- name: starting mysql
+  ansible.builtin.service:
+    name: mysqld 
+    state: started         
+    enabled: yes
+
+- name: checl the default password
+  block: 
+    - name: Get MySQL version with non-default credentials
+      community.mysql.mysql_info:
+        login_user: root 
+        login_password: RoboShop@1
+        filter: version
+
+  rescue:
+    - name: Loading the file from the remote node
+      ansible.builtin.slurp:
+        src: /var/log/mysqld.log
+      register: mysql_log 
+
+    - name: Fetching the password and assigning it to a variable 
+      ansible.builtin.set_fact:
+        DEFAULT_PASSWORD: "{{ mysql_log['content'] | b64decode | regex_findall('.*temporary password.*') | join(' ') |split(' ') | last }}"
+
+    - name: Changing MySQL Password 
+      ansible.builtin.shell: echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1';" | mysql --connect-expired-password -uroot -p"{{DEFAULT_PASSWORD}}"
+
+
+- name: Removing the password validate plugin 
+  ansible.builtin.shell: echo "uninstall plugin validate_password;" | mysql -uroot -pRoboShop@1 
+  ignore_errors: yes 
+
+- name: Download the schema 
+  ansible.builtin.include_role:
+    name: common 
+    tasks_from: download_cleanup
+
+- name: Injecting the schema 
+  community.mysql.mysql_db:
+    state: import
+    name: all
+    target: /tmp/mysql-main/shipping.sql 
+    login_user: root
+    login_password: RoboShop@1
+
+
+# If any of the task fails in a block ( groups of tasks ), then only rescue task should run.
+
+# - name: Print returned information
+#   ansible.builtin.debug:
+#     msg: "{{ mysql_log['content'] | b64decode | regex_findall('.*temporary password.*') | join(' ') |split(' ') | last }}"

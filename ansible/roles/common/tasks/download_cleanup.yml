@@ -3,11 +3,13 @@
     src: https://github.com/stans-robot-project/{{COMPONENT}}/archive/main.zip
     dest: /tmp 
     remote_src: yes
+  ignore_errors: yes
 
 - name: Performing cart cleanup 
   ansible.builtin.file:
     path: /home/{{APPUSER}}/{{COMPONENT}}/
     state: absent 
+  ignore_errors: yes
 
 - name: copying files to roboshop home dir
   ansible.builtin.copy:
@@ -16,3 +18,4 @@
     owner: "{{APPUSER}}"
     group: "{{APPUSER}}"
     remote_src: yes
+  ignore_errors: yes
