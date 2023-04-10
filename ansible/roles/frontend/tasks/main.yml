@@ -24,43 +24,10 @@
   ansible.builtin.template:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
+  notify: Restart nginx #  restart only whenever there is change in the file
   
-- name: restart nginx
+- name: start nginx
   ansible.builtin.service:
     name: nginx
-    state: restarted         
-    enabled: yes
-
-# - name: Installing nginx
-#   ansible.builtin.package:
-#     name: nginx
-#     state: present
-
-# - name: Download and extract frontend
-#   ansible.builtin.unarchive:
-#     src: https://github.com/stans-robot-project/frontend/archive/main.zip
-#     dest: /tmp
-#     remote_src: yes
-
-# - name: Perform frontend cleanup
-#   ansible.builtin.file:
-#     path: /usr/share/nginx/html
-#     state: absent
-
-# - name: copy frontend files
-#   ansible.builtin.copy:
-#     src: /tmp/frontend-main/static/
-#     dest: /usr/share/nginx/html
-#     remote_src: yes # it ensure your code search is on remote machine
-
-
-# - name: copy roboshop proxy config
-#   ansible.builtin.copy:
-#     src: roboshop.conf
-#     dest: /etc/nginx/default.d/roboshop.conf
-
-# - name: Restart Nginx 
-#   ansible.builtin.service:
-#     name: nginx
-#     state: restarted         
-#     enabled: yes
+    state: started         
+    enabled: yes 
