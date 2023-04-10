@@ -26,15 +26,14 @@
     - name: Loading the file from the remote node
       ansible.builtin.slurp:
         src: /var/log/mysqld.log
-      register: mysql_log  
+      register: mysql_log   
 
     - name: Fetching the password and assigning it to a variable 
       ansible.builtin.set_fact:
-        DEFAULT_PASSWORD: "{{ mysql_log['content'] | b64decode | regex_findall('.*temporary password.*') | join(' ') |split(' ') | last }}"
+          DEFAULT_PASSWORD: "{{ mysql_log['content'] | b64decode | regex_findall('.*temporary password.*') | join(' ') |split(' ') | last }}"
 
     - name: Changing MySQL Password 
       ansible.builtin.shell: echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1';" | mysql --connect-expired-password -uroot -p"{{DEFAULT_PASSWORD}}"
-   
 
 - name: Removing the password validate plugin 
   ansible.builtin.shell: echo "uninstall plugin validate_password;" | mysql -uroot -pRoboShop@1 
