@@ -1,0 +1,41 @@
+- name: Installing Python And Dependencies
+  ansible.builtin.yum:
+    name:
+      - python36
+      - gcc
+      - python3-devel
+    state: present
+
+# Calling User Task from common role
+- name: Calling Create User Role From Common
+  ansible.builtin.include_role:
+    name: common 
+    tasks_from: create_user
+
+- name: Calling Download and Extract Role From Common
+  ansible.builtin.include_role:
+    name: common 
+    tasks_from: download_cleanup
+
+- name: Fetch the UID and replace it in the file 
+  ansible.builtin.lineinfile:
+    path: /home/{{APPUSER}}/{{COMPONENT}}/{{COMPONENT}}.ini
+    regexp: '^uid'
+    line: uid = {{APPUSERINFO.uid}}
+
+- name: Fetch the GID and replace it in the file 
+  ansible.builtin.lineinfile:
+    path: /home/{{APPUSER}}/{{COMPONENT}}/{{COMPONENT}}.ini
+    regexp: '^gid'
+    line: uid = {{APPUSERINFO.group}}
+
+- name: Install Application Dependencies 
+  ansible.builtin.pip:
+    requirements: /home/{{APPUSER}}/{{COMPONENT}}/requirements.txt
+    executable: pip3
+
+# Call Configure Service Role
+- name: Calling Config Service Role From Common
+  ansible.builtin.include_role:
+    name: common 
+    tasks_from: config-service
