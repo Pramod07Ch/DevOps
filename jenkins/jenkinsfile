@@ -1,0 +1,42 @@
+// AN example way of declarative pipeline
+pipeline {
+    agent any
+
+    environment {
+        ENV_URL= "pipeline.com"
+    } 
+
+    stages {
+
+        stage('Stage Name - 1') {
+            steps{
+                sh "echo I am using Pipeline syntax"
+            }
+
+        }
+        
+        stage('Stage Name - 2') {
+            steps{
+                sh "echo Printing the environment variable ${ENV_URL}"
+            }
+
+        }
+
+        stage('Stage Name - 3') {
+            steps{
+                sh '''
+
+                        echo I am using pipeline syntax
+                        echo demo on using multiple lines
+                        echo printing multiple lines with a single usag eof sh command
+
+                '''
+            }
+
+        }
+            
+    }
+
+
+
+}
