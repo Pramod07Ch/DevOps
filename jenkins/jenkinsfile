@@ -37,11 +37,11 @@ pipeline {
             environment {
                     ENV_URL= "inside-stage-pipeline.com"
                 } 
-            steps{
+            steps {
                 sh '''
-                        echo Printing the environment variable inside stage: ${ENV_URL}"
+                    echo Printing the environment variable inside stage: ${ENV_URL}
 
-                '''
+                    '''
             }
 
         }
