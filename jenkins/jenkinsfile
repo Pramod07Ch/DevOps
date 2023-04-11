@@ -7,6 +7,15 @@ pipeline {
         SSH_CREDENTIALS = credentials('SSH_CRED')
     } 
 
+    triggers { cron('*/1 * * * *')}
+    
+    parameters {
+          string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+          text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
+          booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
+          choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+          password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+      }
     stages {
 
         stage('Stage Name - 1') {
@@ -14,11 +23,12 @@ pipeline {
                 sh "echo I am using Pipeline syntax"
             }
 
-        }
+           }
         
         stage('Stage Name - 2') {
             steps{
                 sh "echo Printing the environment variable ${ENV_URL}"
+                sh "env"
             }
 
         }
@@ -29,10 +39,6 @@ pipeline {
                 } 
             steps{
                 sh '''
-
-                        echo I am using pipeline syntax
-                        echo demo on using multiple lines
-                        echo printing multiple lines with a single usag eof sh command
                         echo Printing the environment variable inside stage: ${ENV_URL}"
 
                 '''
