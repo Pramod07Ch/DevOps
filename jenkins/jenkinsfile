@@ -21,6 +21,28 @@ pipeline {
     //     maven 'maven-3.9.0' 
     // }
     stages {
+        stage('Example on parallel stages') {
+            parallel {
+                stage('One') {
+                    steps {
+                        sh "echo STAGE ONE"
+                        sh "sleep 2"
+                    }
+                }
+                stage('Two') {
+                    steps {
+                        sh "echo STAGE TWO"
+                        sh "sleep 1"
+                    }
+                }
+                stage('Three') {
+                    steps {
+                        sh "echo STAGE THREE"
+                        sh "sleep 1"
+                    }
+                }
+            }
+        }
 
         stage('Stage Name - 1') {
             steps{
