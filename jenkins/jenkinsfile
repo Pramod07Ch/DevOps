@@ -4,6 +4,7 @@ pipeline {
 
     environment {
         ENV_URL= "pipeline.com"
+        SSH_CREDENTIALS = credentials('SSH_CRED')
     } 
 
     stages {
@@ -23,12 +24,16 @@ pipeline {
         }
 
         stage('Stage Name - 3') {
+            environment {
+                    ENV_URL= "inside-stage-pipeline.com"
+                } 
             steps{
                 sh '''
 
                         echo I am using pipeline syntax
                         echo demo on using multiple lines
                         echo printing multiple lines with a single usag eof sh command
+                        echo Printing the environment variable inside stage: ${ENV_URL}"
 
                 '''
             }
