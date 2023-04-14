@@ -34,5 +34,5 @@ variable "sample_list" {
 
 # from the above list bock, data in that block can be of any type
 output sample_list_op" {
-    value   =   "Welcome to ${var.sample_list[0]} ${var.sample_list[1]}  and duration is ${var.sample_list[2]} hours"
+    value   =   "Welcome to ${var.sample_list[0]} training and duration of training is ${var.sample_list[2]} hours"
 }
