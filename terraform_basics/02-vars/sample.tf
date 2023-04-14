@@ -37,3 +37,17 @@ variable "sample_list" {
 output "sample_list_op" {
     value = "Welcome to ${var.sample_list[0]} Training and duration of the training is  ${var.sample_list[4]} hours"
 }
+
+# map variable type
+
+variable "sample_map" {
+    default = {
+        Mode = "Online" ,
+        Training = "DevOps" ,
+        Timings = "0730_AM_IST"
+    }
+}
+
+output "sample_map_op" {
+    value   =   "Welcome to ${var.sample_map["Mode]}
+}
