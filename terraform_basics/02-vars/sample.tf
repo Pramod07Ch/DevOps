@@ -18,7 +18,7 @@ variable "integer" {
 }
 
 output "number" {
-    value   =   var.number
+    value   =   var.integer
 }
 
 # list
