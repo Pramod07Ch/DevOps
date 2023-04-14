@@ -14,25 +14,26 @@ output "sample_op_2" {
 # if given ina string then its required
 
 variable "integer" {
-    default     =   1000
+    default = 1000
 }
 
 output "number" {
-    value   =   var.integer
+    value = var.integer 
 }
 
-# list
+# List variable 
 variable "sample_list" {
-    default     =   [
-                "Terraform",
-                "Training",
-                99,
-                true,
-                "Cloud formation"
+    default = [
+        "Terraform",
+        "Training",
+        "Pulumi",
+        "Cloud Formation",
+        120,
+        true,
     ]
 }
 
-# from the above list bock, data in that block can be of any type
-output sample_list_op" {
-    value   =   "Welcome to ${var.sample_list[0]} training and duration of training is ${var.sample_list[2]} hours"
+# From the above list block, data in that block can be of any type 
+output "sample_list_op" {
+    value = "Welcome to ${var.sample_list[0]} Training and duration of the training is  ${var.sample_list[4]} hours"
 }
