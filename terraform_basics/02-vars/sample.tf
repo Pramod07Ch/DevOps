@@ -44,10 +44,17 @@ variable "sample_map" {
     default = {
         Mode = "Online" ,
         Training = "DevOps" ,
-        Timings = "0730_AM_IST"
+        Timings = "0730_AM_CET"
     }
 }
 
 output "sample_map_op" {
     value   =   "Welcome to ${var.sample_map["Mode"]} - ${var.sample_map["Training"]} Training and the batch timings are ${var.sample_map["Timings"]}"
+}
+
+# Declaring an empty variable
+variable "city" {}
+
+output "city_name" {
+    value   =   var.city
 }
