@@ -78,5 +78,5 @@ output "state_name_op_1" {
 variable "country" {}
 
 variable "country_name" {
-    value   =   "Name of the country: ${country}
+    value   =   "Name of the country: ${var.country}
 }
