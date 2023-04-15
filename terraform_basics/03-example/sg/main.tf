@@ -25,4 +25,5 @@ resource "aws_security_group" "allow_ssh_sg" {
 
 # decalre the ID of the SG ID , so that we can pas it to the root module
 output "sg" {
-    value      = aws_security_group.allow:ssh.sg.id
+    value      = aws_security_group.allow_ssh.sg.id
+}
