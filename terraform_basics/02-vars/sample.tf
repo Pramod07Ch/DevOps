@@ -66,9 +66,17 @@ output "city_name_op_1" {
 # the variables need to be declared inside terraform.tfvars. If xxxx.tfvars is taken, then 
 # it is explicitly need to be mentioned.
 
-variable "state" {}
+variable "state" {
+    default     =   "stuttgart"
+}
 
 
 output "state_name_op_1" {
     value   =   "Name of the given city: ${var.state}"
+}
+
+variable "country" {}
+
+variable "country_name" {
+    value   =   "Name of the country: ${country}
 }
