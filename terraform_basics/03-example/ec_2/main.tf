@@ -1,7 +1,7 @@
 
 resource "aws_instance" "web" {
-    ami = "ami- 05f********"
-    instance_type = "t3.micro"
+    ami                 =       data.aws_ami.my_ami.image_id
+    instance_type       = "t3.micro"
     vpc_security_group_ids = [var.sg]
 
     tags = {

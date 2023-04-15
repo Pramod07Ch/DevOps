@@ -20,6 +20,7 @@ https://developer.hashicorp.com/terraform/downloads
 
     <--- high              ---> low
     -var, -var-file ; auto.tfvars; terrafrom.tfvars; SHELL, ENV, VARS 
-    
+
     4) How to pass a SHELL variable in terraform : export TF_VAR_STATE=AP
+    5) Datasource in Terraform helps us in querying the information that is already available on Provider and this eliminates the static declarartion of variables
 ```
