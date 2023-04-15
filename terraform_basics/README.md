@@ -16,5 +16,10 @@ https://developer.hashicorp.com/terraform/downloads
     1) Terraform is case sensitive 
     2) There is no concept of single quotes and usage of it is strictly prohibited
     3) By default terraform picks the file with the name terraform.tfvars and any varible that's declared outside of terraform.tfvars needs to be explicitly mentioned. 
+    ### varaibale precedence
+
+    <--- high              ---> low
+    -var, -var-file ; auto.tfvars; terrafrom.tfvars; SHELL, ENV, VARS 
+    
     4) How to pass a SHELL variable in terraform : export TF_VAR_STATE=AP
 ```
