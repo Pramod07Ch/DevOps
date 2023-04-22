@@ -43,5 +43,49 @@ Use case using provisoners :
 
     4) Provisioners by default are `create-time` provisioners, that means provisioners by default will only run during the creation of the resource, not all the time you run the `terraform-apply`
 
-    5) There are also a type of provisioners called `destroy-time` provsioners which will only be executed during the deletion of the resource.
+    5) There are also a type of provisioners called `destroy-time` provisioners which will only be executed during the deletion of the resource.
+```
+### Essential step of any project is 'Network Creation'
+1) We need to design the network and then we will provision the infra 
+
+2) The design should include the size of the network and also future demands of growth in mind.
+
+3) Network has to be designed in such a way that only the needed infra should be PUBLIC Facing, rest of them should be 100% private.
+
+4) When I say private, none of them should be accessible directly from the internet.
+
+5) In AWS, we have a service called VPC : `Virtual Private Cloud` , using this we will design and provision our network.
+
+6) In each and every region of AWS, we have a default network where all the infra will be created on that network by default. But, in reality, every organization creates their own network as per their needs.
+
+## What is Network Peering ?
+By default, one network cannot communicate with another network directly. In order to establish direct / private communication, we need to perform peering between the networks, then only they can talk to each other.
+
+### Public IP Address vs Private IP Address ?
+    Public IP Address is issued by the ISP and is unique across the globe.
+
+    Private IP Adress is unique only with in the Infranet vs Corporate Network 
+IP Address as classified in to classes based on their usage :
+
+```
+    1) Class A
+    2) Class B
+    3) Class C
+    4) Class D
+    5) Class E
+```
+[img](https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_575/https://embeddedgeeks.com/wp-content/uploads/2020/06/ip_Class-1.png)
+
+Networking Goals to learn network :
+    What are my goals ?
+```
+    1) I'd like to create a network 
+    2) I'd like to break that network in to 2 piece ( subnets )
+    3) One should public subnet  ( should have a public ip and access to internet )
+    4) One should private subnet ( should only have private ip and no direct access to internet )
+    5) Also my ws from default network should be able to talk to Public / Private network, using private IP.
+
+    Network CIDR        : 10.0.0.0/24 
+    Public Subnet CIDR  : 10.0.0.0/25
+    Private Subnet CIDR : 10.0.0.128/25
 ```
