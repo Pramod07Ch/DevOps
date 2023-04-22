@@ -74,7 +74,7 @@ IP Address as classified in to classes based on their usage :
     4) Class D
     5) Class E
 ```
-[img](https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_575/https://embeddedgeeks.com/wp-content/uploads/2020/06/ip_Class-1.png)
+![img](https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_575/https://embeddedgeeks.com/wp-content/uploads/2020/06/ip_Class-1.png)
 
 Networking Goals to learn network :
     What are my goals ?
