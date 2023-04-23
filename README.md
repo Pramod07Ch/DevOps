@@ -26,4 +26,5 @@ The project is based on a Microservices Architecture with diversified tech stack
 - JIRA
 - Git
 - AWS (EC2, Route 53, IAM)
-- 
+- Jenkins
+- Terraform
