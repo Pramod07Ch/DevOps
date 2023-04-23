@@ -1,0 +1,3 @@
+vpc:
+    source: "https://github.com/Pramod07Ch/DevOps.git"
+    version: "main"
